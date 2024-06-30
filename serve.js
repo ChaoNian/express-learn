@@ -31,6 +31,9 @@ function checkCodeMiddleware(req, res, next) {
 // 使用全局中间件（注册）
 app.use(recordMiddleware);
 
+// 静态资源中间件设置
+app.use(express.static(__dirname + '/public')) //页面首页
+
 // 设置响应            注册 路由中间件checkCodeMiddleware
 app.get("/response", checkCodeMiddleware, (req, res) => {
   // 原生
@@ -73,6 +76,8 @@ app.get("/:id.html", (req, res) => {
   res.setHeader("content-type", "text/html;charset=utf-8");
   res.end("商品详情");
 });
+
+
 
 app.get("/home", (req, res) => {
   res.end("hellow, espress");
