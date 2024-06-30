@@ -14,3 +14,5 @@
 /response ::ffff:127.0.0.1
 /response ::ffff:127.0.0.1
 /response ::ffff:127.0.0.1
+/response ::ffff:127.0.0.1
+/response?code=521 ::ffff:127.0.0.1

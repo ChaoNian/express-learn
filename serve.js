@@ -18,11 +18,21 @@ function recordMiddleware(req, res, next) {
   next(); // 继续执行下一个方法
 }
 
-// 使用中间件（注册）
+
+// 声明路由中间件 场景 某些路由需要进行权限控制， 拦截请求
+function checkCodeMiddleware(req, res, next) {
+    if (req.query.code === '521') {
+        next()
+    } else {
+        res.send('你没有权限')
+    }
+}
+
+// 使用全局中间件（注册）
 app.use(recordMiddleware);
 
-// 设置响应
-app.get("/response", (req, res) => {
+// 设置响应            注册 路由中间件checkCodeMiddleware
+app.get("/response", checkCodeMiddleware, (req, res) => {
   // 原生
   //     res.statusCode = 404
   //     res.statusMessage = 'love'
