@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Pug Example
+  body
+    header
+      h1 Hello, #{username}!
+    main
+      if messages.length > 0
+        ul
+          each message in messages
+            li=message
+      else
+        p No messages
+    footer
+    include layout.pug
+      p &copy; 2024 My Website
+
+block content
+  h1 Welcome to my website!
+
+

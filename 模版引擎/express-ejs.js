@@ -8,11 +8,18 @@ const path = require('path')
 const app  = express()
 
 // 1、设置模版引擎
-app.set('view engine', 'ejs') // pug tring
+app.set('view engine', 'ejs') // pug twing
 
 // 2、设置模版文件存放位置 模版文件： 具有模版语法内容的文件
 app.set('views', path.resolve(__dirname, './views'))
 
+
+const data = {
+    userbio: '<script>alert("XSS attack!");</script>'
+};
+const escapedBio = ejs.escapeXML(data.userbio);
+
+console.log(escapedBio); // Outputs: &lt;script&gt;alert(&quot;XSS attack!&quot;);&lt;/script&gt;
 
 app.get('/home', (req, res) => {
 
